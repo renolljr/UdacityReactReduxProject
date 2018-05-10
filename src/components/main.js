@@ -93,7 +93,7 @@ class Main extends Component {
                   </div> 
               </div>
               <div className ="row add-new">
-                {   <div className="btn btn-primary" onClick={() => this.props.history.push('create')}>
+                {   <div className="btn btn-primary" onClick={() => this.props.history.push('add')}>
                      Add New Post
                   </div> }                   
                 </div>

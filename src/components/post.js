@@ -70,7 +70,7 @@ class Post extends Component{
                 <span className="author-name">by {data.author} | </span>
                 <span className="date">{getTimeOfCreation(data.timestamp)} | </span>
                 <span className="post-comments">{hasComment ? comments[data.id].length : 0} {hasComment && comments[data.id].length === 1 ? `comment` : `comments`} | </span>
-                <Link to={`/create?edit=${data.id}`} className="edit clickable">edit</Link > |                                    
+                <Link to={`/edit/${data.id}`} className="edit clickable">edit</Link > |                                    
                 <span className="post-delete clickable" onClick={() => this.props.deletePostById(data.id)}> delete</span>
             </span>
             </div>

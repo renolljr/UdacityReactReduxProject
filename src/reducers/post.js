@@ -2,12 +2,6 @@ import {sortByCriteria} from '../globalutil/helpers'
 
 const post = (state = {currentSort: 'desc'}, action) => {
   let _post;
-//state looks like this
-// comments
-// post
-// allPosts
-// sorted
-
 /* 
   Post Data Looks like this on the server
   posts[post.id] = {
@@ -159,8 +153,38 @@ const post = (state = {currentSort: 'desc'}, action) => {
         };
 
     case "CREATE_NEW_POST":
+        //get the collection of all posts, if we don't have any posts create new collection
+        allPosts = state.allPosts || []
+        //get the post from the dispatched action
+        _post = action.post
+
+        //add the post to the posts collection
+        allPosts.push(_post);
+
+        //ensure we aren't displaying deleted entries 
+        activePosts = allPosts.filter(z => !z.deleted)
+
+        //return updated state
+        return {
+          ...state,
+          allPosts: activePosts,
+          sorted: activePosts.sort((a, b) => b.voteScore - a.voteScore)  
+        };
+
         break;
     case "EDIT_A_POST":
+        //get the post from the action
+        _post = action.post;
+        //grab the allPosts collection from the store, if undefined create it
+        allPosts = state.allPosts;
+        //obtain the index of the post
+        postIndex = allPosts.findIndex(x => x.id == action.post.id);
+        //replace that value
+        allPosts[postIndex] = _post;
+        //return the new state
+        return {...state, allPosts };
+
+
         break;
     case "DELETE_A_POST":
         let all_posts = [...state.allPosts];

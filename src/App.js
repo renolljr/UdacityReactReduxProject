@@ -8,7 +8,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import Main from './components/main';
 import CategoryContainer from './components/categoryContainer';
 import TopNavBar from './components/topnavbar';
-import CreateNewPost from './components/create';
+import AddNewPostView from './components/addPost'
+import EditPostView from './components/edit'
 
 import post from './reducers/post'
 import category from './reducers/category'
@@ -44,7 +45,8 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <View exact path="/" component={Main}/>
-            <View exact path="/create" component={CreateNewPost}/>
+            <View exact path="/add" component={AddNewPostView}/>
+            <View exact path="/edit/:id" component={EditPostView}/>
             <View path="/:category" component={CategoryContainer}/> 
 
           </Switch>
