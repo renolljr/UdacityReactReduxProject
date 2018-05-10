@@ -1,0 +1,89 @@
+/* Global Styles Only */
+
+textarea {
+    resize: none;
+}
+.header-spacing { margin-top: 80px; }
+.clickable { cursor: pointer }
+.clickable:hover{ text-decoration: underline;}
+#categories .hidden {
+    visibility:hidden;
+}
+.first{
+    margin-left:-15px
+}
+.post-arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid black;
+    display:block;
+  }
+.post-arrow-down {
+    width: 0; 
+    height: 0; 
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid black;
+
+    display:block
+  }
+
+.comment-arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid black;
+    display:block;
+  }
+
+ .comment-arrow-down {
+    width: 0; 
+    height: 0; 
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid  #29487d;;
+    display:block
+  }
+  
+.space-top{padding-top:15px;}
+
+.add-new{padding-top:50%}
+
+.fw { width: 100%; text-align: middle}
+.spacer { margin-right: 10px; }
+.divider { padding: 10px 0px; margin: 5px 0px; }
+
+.list-group-item { text-transform: capitalize }
+.sort-right { width: 30%; }
+
+.active{text-decoration: underline;}
+
+.sort-post-header {margin-top: 0; margin-bottom: 10%;color: inherit;}
+
+.center-text{text-align:center}
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {color:white !important;}
+.navbar-default { background-color: #29487d !important;border-color: #e7e7e7 !important;}
+
+.btn-readable{color: #fff;background-color: #29487d;}
+
+.create-new-text{color:white !important;}
+.create-new{ background-color: #29487d !important;border-color: #e7e7e7 !important;}
+.create-panel{background: linear-gradient(to left, rgba(163, 160, 159,0), rgba(163, 160, 159, 0.15));}
+
+
+#posts .post { padding: 10px 0px; margin: 15px 0px; border-bottom: 1px solid #dedede; background-color: #e9ebee; border-radius:18px; }
+#posts .post:last-of-type { border-bottom: none; }
+.title { font-weight: bold; font-size: 12pt; padding-bottom: 4px; }
+.section { font-size: 11px; }
+.edit {color:black;}
+.body { padding: 15px 0px 30px 0px; font-size: 14px; word-wrap: break-word; }
+.date { color: grey}
+.author-name { font-weight: bold; font-weight: 14px; }
+.comment {padding: 10px 0px; margin: 10px 0px 10px 0px; background-color: #ffffff; border-radius:18px; }
+.comments-number{margin: 5px 0px; font-weight:bold; font-size:12px}
+.comment-controls{margin: 5px 0px;}
+.comment-add-name{margin-left:15px;}
+.comments-block { width: 30px; height: auto; font-size: 14px; }
