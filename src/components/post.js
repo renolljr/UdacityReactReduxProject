@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
-import {getTimeOfCreation} from '../globalutil/helpers'
+import {getCreatedDate} from '../globals/helpers'
 import {connect} from 'react-redux'
 import Comment from './comment'
 import AddNewComment from './addNewComment'
-import {getPostsById, deletePostById, voteOnPost} from '../actions/posts'
-import {getPostComments, createComment, editComment,voteOnComment, deleteCommentById} from '../actions/comments'
+
+import {mapDispatchToProps,mapStateToProps} from '../globals/globals'
 
 class Post extends Component{
   state = {
@@ -68,7 +68,7 @@ class Post extends Component{
             </div>
             <span className="section">
                 <span className="author-name">by {data.author} | </span>
-                <span className="date">{getTimeOfCreation(data.timestamp)} | </span>
+                <span className="date">{getCreatedDate(data.timestamp)} | </span>
                 <span className="post-comments">{hasComment ? comments[data.id].length : 0} {hasComment && comments[data.id].length === 1 ? `comment` : `comments`} | </span>
                 <Link to={`/edit/${data.id}`} className="edit clickable">edit</Link > |                                    
                 <span className="post-delete clickable" onClick={() => this.props.deletePostById(data.id)}> delete</span>
@@ -87,6 +87,7 @@ class Post extends Component{
             <div>
                 {this.getCommentsForPost()}
                 <AddNewComment
+                  key={data.id}
                   addNewComment={this.props.addNewComment}
                   post={this.props.data}
                 />
@@ -100,21 +101,5 @@ class Post extends Component{
   }
 }
 
-const mapStateToProps = (state) => {
-  return { post: state.post }
-}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getPost: (id) => dispatch(getPostsById(id)),
-    deletePostById: (id) => dispatch(deletePostById(id)),
-    clearPost: () => dispatch({type:'CLEAR_POST'}),
-    getPostComments: id => dispatch(getPostComments(id)),
-    addNewComment: data => dispatch(createComment(data)),
-    editComment: (commentId, data) => dispatch(editComment(commentId,data)),
-    deleteCommentById: (id) => dispatch(deleteCommentById(id)),
-    voteOnPost: (postId,vote) => dispatch(voteOnPost(postId, vote)),
-    voteOnComment: (commentId, vote) => dispatch(voteOnComment(commentId,vote))
-  }
-}
 export default connect(mapStateToProps,mapDispatchToProps)(Post);

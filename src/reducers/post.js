@@ -1,4 +1,4 @@
-import {sortByCriteria} from '../globalutil/helpers'
+import {sortByCriteria} from '../globals/helpers'
 
 const post = (state = {currentSort: 'desc'}, action) => {
   let _post;
@@ -85,15 +85,16 @@ const post = (state = {currentSort: 'desc'}, action) => {
       case 'EDIT_A_COMMENT':
 
         comments = {...state.comments}
+     
         postId = action.comment.parentId;
+ 
         post = comments[postId];
   
         //find the comment id
         let commentID = post.findIndex(z => z.id === action.comment.id);
-        post[commentID] = action.comment;  // replace the comment with the new / edited one 
-
+        post[commentID] = action.comment;  // replace the comment with the new / edited one       
         comments[postId] = post;  // update the post comments
-
+     
         return {
             ...state,
              comments
@@ -155,7 +156,8 @@ const post = (state = {currentSort: 'desc'}, action) => {
     case "CREATE_NEW_POST":
         //get the collection of all posts, if we don't have any posts create new collection
         allPosts = state.allPosts || []
-        //get the post from the dispatched action
+        
+         //get the post from the dispatched action
         _post = action.post
 
         //add the post to the posts collection
@@ -167,12 +169,15 @@ const post = (state = {currentSort: 'desc'}, action) => {
         //return updated state
         return {
           ...state,
+          post: _post,
           allPosts: activePosts,
           sorted: activePosts.sort((a, b) => b.voteScore - a.voteScore)  
         };
 
         break;
+
     case "EDIT_A_POST":
+    
         //get the post from the action
         _post = action.post;
         //grab the allPosts collection from the store, if undefined create it
@@ -183,18 +188,26 @@ const post = (state = {currentSort: 'desc'}, action) => {
         allPosts[postIndex] = _post;
         //return the new state
         return {...state, allPosts };
-
-
+        
         break;
-    case "DELETE_A_POST":
-        let all_posts = [...state.allPosts];
-        let active_posts = all_posts.filter(z=> z.id !== action.post.id);
+
+    case "DELETE_A_POST"://set deleted flag
+        let all_posts = state.allPosts || []
+     
+        postId = action.post.id;
+        postIndex = all_posts.findIndex(x => x.id == postId);
+
+        all_posts[postIndex] = action.post
+
+        let active_posts = all_posts.filter(z => !z.deleted);
+      
         return {
           ...state,
           post: null,
           allPosts: active_posts,
           sorted: sortByCriteria([...active_posts], state.currentSort)
         }
+
     case 'CLEAR_POST':
       return {...state, post: null}
     case 'SORT_BY':

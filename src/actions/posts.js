@@ -1,5 +1,5 @@
-import {READABLE_API_POSTS_URL, READABLE_API_BASEURL} from '../globalutil/globals'
-import {postAndPutAuthHeaders, basicAuthHeaders} from '../globalutil/globals'
+import {READABLE_API_POSTS_URL, READABLE_API_BASEURL} from '../globals/globals'
+import {postAndPutAuthHeaders, basicAuthHeaders} from '../globals/globals'
 
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const GET_POST_BY_ID = "GET_POST_BY_ID"
@@ -62,6 +62,7 @@ export const createNewPost = (post) => {
             body: JSON.stringify(post)
         })
         .catch(error => console.error(error))
+        .then((response) => response.json())
         .then((data) => {
              //dispatch an action
             dispatch({ type: CREATE_NEW_POST, post: data });
@@ -110,9 +111,10 @@ export const deletePostById = (postId) =>  {
     return dispatch => {
         return fetch(READABLE_API_POSTS_URL + postId + '/',{ 
                  method: 'DELETE',
-                 headers: basicAuthHeaders
+                 headers: postAndPutAuthHeaders
              })
             .catch(error => console.error(error))  //ok for now
+            .then((response) => response.json())
             .then((data) => {
                  //dispatch an action
                 dispatch({ type: DELETE_A_POST, post: data });

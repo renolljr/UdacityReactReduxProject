@@ -1,7 +1,7 @@
 import {
   READABLE_API_BASEURL,
   basicAuthHeaders
-} from '../globalutil/globals'
+} from '../globals/globals'
 
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
 

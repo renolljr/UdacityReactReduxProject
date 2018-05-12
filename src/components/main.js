@@ -6,9 +6,7 @@ import Select from 'react-select'
 import Post from './post'
 import Category from './category'
 
-import {getCategories} from '../actions/categories'
-import {getPostComments} from '../actions/comments'
-import {getAllPosts, voteOnPost, deletePostById} from '../actions/posts'
+import {mapDispatchToProps,mapStateToProps} from '../globals/globals'
 
 class Main extends Component {
    state = {
@@ -110,24 +108,6 @@ class Main extends Component {
           </div>
         </div>
     )
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    category: state.category,
-    post: state.post
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getCategories : () => dispatch(getCategories()),
-    getAllPosts: () => dispatch(getAllPosts()),
-    deletePostById: (id) => dispatch(deletePostById(id)),
-    voteOnPost: (postId,vote) => dispatch(voteOnPost(postId, vote)),
-    getCommentsForPost: (postId) => dispatch(getPostComments(postId)),
-    updateSort: (criteria) => dispatch({type:'SORT_BY', 'GET_ALL_POSTS': criteria})
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Main)

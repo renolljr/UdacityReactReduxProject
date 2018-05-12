@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {getTimeOfCreation} from '../globalutil/helpers'
+import {getCreatedDate} from '../globals/helpers'
 export default class Comment extends Component {
   state = {
     edit:false
@@ -7,9 +7,9 @@ export default class Comment extends Component {
 
   saveEditedComment(id) {
     let data = {
-      timestamp: Date.now(),
-      body: this.refs.comment.value
+        body: this.refs.comment.value
     }
+    console.log("Calling saveEditedComment handler");
     this.props.editComment(id,data)
       .then(r =>{
         this.setState({edit: false})
@@ -46,11 +46,11 @@ export default class Comment extends Component {
                   {edit ?
                       <span>
                         <span onClick={() => this.setState({edit:false})} className="clickable spacer">undo</span>            
-                        <span onClick={this.saveEditedComment.bind(this,data.id)} className="clickable spacer">save</span>
+                        <span onClick={() => this.saveEditedComment(data.id)} className="clickable spacer">save</span>
                       </span>
                     : <span className="clickable spacer" onClick={() => this.setState({edit:true})} >  edit  </span> 
                   } 
-                  <span className="date">  {getTimeOfCreation(data.timestamp)} </span>
+                  <span className="date">  {getCreatedDate(data.timestamp)} </span>
               </span>
               </div>
               </div>

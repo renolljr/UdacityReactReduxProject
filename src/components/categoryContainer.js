@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Main from './main';
-import {getCategories} from '../actions/categories'
-import {getPostComments} from '../actions/comments'
-import {getPostsByCategory, deletePostById, voteOnPost} from '../actions/posts'
+import {mapDispatchToProps,mapStateToProps} from '../globals/globals'
 
 class CategoryContainer extends Component {
   componentDidMount() {
@@ -38,23 +36,6 @@ class CategoryContainer extends Component {
     return (
       <Main {...this.props}/>
     ) 
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    category: state.category,
-    post: state.post
-  }
-}
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getCategories : () => dispatch(getCategories()),
-    getPostsByCategory: (id) => dispatch(getPostsByCategory(id)),
-    deletePostById: (id) => dispatch(deletePostById(id)),
-    voteOnPost: (postId,vote) => dispatch(voteOnPost(postId, vote)),
-    getCommentsForPost: (postId) => dispatch(getPostComments(postId)),
-    updateSort: (criteria) => dispatch({type:'SORT_BY', 'GET_ALL_POSTS': criteria})
   }
 }
 

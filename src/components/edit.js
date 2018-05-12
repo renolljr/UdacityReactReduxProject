@@ -5,23 +5,14 @@ import {connect} from 'react-redux'
 import serialize from 'form-serialize'
 import queryString from 'query-string'
 
-
-import {getCategories} from '../actions/categories'
-import {getPostsById, createNewPost, editPost} from '../actions/posts'
-
+import {mapDispatchToProps,mapStateToProps} from '../globals/globals'
 
 class EditPostView extends Component{
-
 
     componentDidMount(){
         //do any async processing here
         const {id} = this.props.match.params //get id from match collection
-        console.log("we entered component did mount")
-        console.log(id)
-        this.setState({id});
-        console.log(this.state);
-
-
+       
         this.props.getCategories().catch(e => {
             console.log(e);
         })   ;  //grab the categories
@@ -38,7 +29,6 @@ class EditPostView extends Component{
         //component is getting ready to be unmounted 
         this.props.clearPost()
     }
-
 
     handlePostEditFormSubmit(e){
         //handle the form submit without side effects
@@ -59,7 +49,6 @@ class EditPostView extends Component{
               console.log(e)
           })
     }
-
 
     render(){
         let post = this.props.post.post;
@@ -97,23 +86,6 @@ class EditPostView extends Component{
                 We're sorry, and error occured.  
             </div>
             
-    }
-}
-
-function mapDispatchToProps(dispatch){
-    return {
-        getCategories: () => dispatch(getCategories()),
-        createNewPost: (data) => dispatch(createNewPost(data)),
-        editPost: (postId,data) => dispatch(editPost(postId,data)),
-        clearPost: () => dispatch({type:'CLEAR_POST'}),
-        getPost: (id) => dispatch(getPostsById(id))
-    }
-}
-
-function mapStateToProps(state){
-    return {
-        category: state.category,
-        post: state.post
     }
 }
 

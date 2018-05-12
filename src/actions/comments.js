@@ -1,5 +1,5 @@
-import {READABLE_API_BASEURL} from '../globalutil/globals'
-import {postAndPutAuthHeaders, basicAuthHeaders} from '../globalutil/globals'
+import {READABLE_API_BASEURL} from '../globals/globals'
+import {postAndPutAuthHeaders, basicAuthHeaders} from '../globals/globals'
 
 export const GET_COMMENTS_FOR_POST = 'GET_COMMENTS_FOR_POST'
 export const CREATE_A_COMMENT = 'CREATE_A_COMMENT'
@@ -25,7 +25,6 @@ export const getPostComments = (postId) => {
                           data: data
                         }
           });
-
       return data
     })
   }
@@ -71,7 +70,7 @@ export const editComment = (commentId, data) => {
     return fetch(READABLE_API_BASEURL + 'comments/' + commentId + '/',
     {   
         method: 'PUT',
-        headers: basicAuthHeaders,
+        headers: postAndPutAuthHeaders,
         body: JSON.stringify(data)
     })
     .catch(error => console.error(error)) 
