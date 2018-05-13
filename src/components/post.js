@@ -5,7 +5,8 @@ import {connect} from 'react-redux'
 import Comment from './comment'
 import AddNewComment from './addNewComment'
 
-import {mapDispatchToProps,mapStateToProps} from '../globals/globals'
+import {deletePostById, voteOnPost } from '../actions/posts'
+import { createComment, editComment, voteOnComment, deleteCommentById} from '../actions/comments'
 
 class Post extends Component{
   state = {
@@ -53,7 +54,6 @@ class Post extends Component{
       <div className="post">
         <div className="post row">
           <div className="col-xs-12">
-
             <div className="col-sm-1">
             <div className="pull-left center-text comments-block">
               <span className="post-arrow-up clickable" onClick={() => this.props.voteOnPost(data.id, 'upVote')}></span>
@@ -61,7 +61,6 @@ class Post extends Component{
               <span className="post-arrow-down fw clickable" onClick={() => this.props.voteOnPost(data.id, 'downVote')}></span>
             </div>
             </div>
-          
             <div className="col-sm-10">
             <div className="title">
               <b><Link to={`/${data.category}/${data.id}`}> {data.title}</Link></b> 
@@ -74,7 +73,6 @@ class Post extends Component{
                 <span className="post-delete clickable" onClick={() => this.props.deletePostById(data.id)}> delete</span>
             </span>
             </div>
-          
             <div className ="row">
               <div className= "col-sm-2"/>
               <div className ="col-sm-10">
@@ -101,5 +99,24 @@ class Post extends Component{
   }
 }
 
+function mapDispatchToProps(dispatch){
+  return {
+    deletePostById: (id) => dispatch(deletePostById(id)),
+    clearPost: () => dispatch({type:'CLEAR_POST'}),
+    addNewComment: data => dispatch(createComment(data)),
+    editComment: (commentId, data) => dispatch(editComment(commentId,data)),
+    deleteCommentById: (id) => dispatch(deleteCommentById(id)),
+    voteOnPost: (postId,vote) => dispatch(voteOnPost(postId, vote)),
+    voteOnComment: (commentId, vote) => dispatch(voteOnComment(commentId,vote))
+
+  }
+}
+
+function mapStateToProps(state){
+  return {
+      category: state.category,
+      post: state.post
+  }
+}
 
 export default connect(mapStateToProps,mapDispatchToProps)(Post);

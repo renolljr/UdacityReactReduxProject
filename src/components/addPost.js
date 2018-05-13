@@ -7,7 +7,8 @@ import serialize from 'form-serialize'
 //we need a way to create a guid
 import uuidv1 from 'uuid/v1'
 
-import {mapDispatchToProps,mapStateToProps} from '../globals/globals'
+import {getCategories} from '../actions/categories'
+import {getPostsById,createNewPost, editPost} from '../actions/posts'
 
 class AddNewPostView extends Component{
    
@@ -15,7 +16,7 @@ class AddNewPostView extends Component{
         //run anything that needs to be run when the component mounts 
         this.props.getCategories();
     }
-
+    
     componentWillReceiveProps(){
         //will we be receiving any props?  
     }
@@ -84,6 +85,23 @@ class AddNewPostView extends Component{
             </div>
     }
 
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+      getCategories: () => dispatch(getCategories()),
+      createNewPost: (data) => dispatch(createNewPost(data)),
+      editPost: (postId,data) => dispatch(editPost(postId,data)),
+      clearPost: () => dispatch({type:'CLEAR_POST'}),
+      getPost: (id) => dispatch(getPostsById(id))
+  }
+}
+
+function mapStateToProps(state){
+  return {
+      category: state.category,
+      post: state.post
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (AddNewPostView)

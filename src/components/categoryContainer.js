@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Main from './main';
-import {mapDispatchToProps,mapStateToProps} from '../globals/globals'
+
+import {getCategories} from '../actions/categories'
+import {getPostsByCategory} from '../actions/posts'
 
 class CategoryContainer extends Component {
   componentDidMount() {
@@ -38,5 +40,23 @@ class CategoryContainer extends Component {
     ) 
   }
 }
+
+//import {getPostsById, getAllPosts, getPostsByCategory, deletePostById, voteOnPost} from '../actions/posts'
+//import {getPostComments, createComment, editComment,voteOnComment, deleteCommentById} from '../actions/comments'
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getCategories : () => dispatch(getCategories()),
+    getPostsByCategory: (id) => dispatch(getPostsByCategory(id)),
+  }
+}
+
+function mapStateToProps(state){
+  return {
+      category: state.category,
+      post: state.post
+  }
+}
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryContainer)

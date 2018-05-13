@@ -5,7 +5,8 @@ import {connect} from 'react-redux'
 import serialize from 'form-serialize'
 import queryString from 'query-string'
 
-import {mapDispatchToProps,mapStateToProps} from '../globals/globals'
+import {getCategories} from '../actions/categories'
+import {getPostsById, editPost} from '../actions/posts'
 
 class EditPostView extends Component{
 
@@ -88,5 +89,21 @@ class EditPostView extends Component{
             
     }
 }
+
+function mapDispatchToProps(dispatch){
+    return {
+        getCategories: () => dispatch(getCategories()),
+        editPost: (postId,data) => dispatch(editPost(postId,data)),
+        clearPost: () => dispatch({type:'CLEAR_POST'}),
+        getPost: (id) => dispatch(getPostsById(id))
+    }
+}
+
+function mapStateToProps(state){
+    return {
+        category: state.category,
+        post: state.post
+    }
+  }
 
 export default connect(mapStateToProps, mapDispatchToProps) (EditPostView)

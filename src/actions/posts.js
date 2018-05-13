@@ -1,13 +1,15 @@
-import {READABLE_API_POSTS_URL, READABLE_API_BASEURL} from '../globals/globals'
-import {postAndPutAuthHeaders, basicAuthHeaders} from '../globals/globals'
+import {READABLE_API_POSTS_URL, READABLE_API_BASEURL} from './misc/globals'
+import {postAndPutAuthHeaders, basicAuthHeaders} from './misc/globals'
+import {
+    GET_ALL_POSTS,
+    GET_POST_BY_ID, 
+    CREATE_NEW_POST, 
+    VOTE_POST, 
+    EDIT_A_POST, 
+    DELETE_A_POST, 
+    GET_POST_ACK
+ } from "./types"
 
-export const GET_ALL_POSTS = 'GET_ALL_POSTS'
-export const GET_POST_BY_ID = "GET_POST_BY_ID"
-export const CREATE_NEW_POST = "CREATE_NEW_POST"
-export const VOTE_POST = "VOTE_POST"
-export const EDIT_A_POST = "EDIT_A_POST"
-export const DELETE_A_POST = "DELETE_A_POST"
-export const GET_POST_ACK = "GET_POST_ACK"
 
 export const getAllPosts = () => {
     return dispatch => { //dispatch c/o mapDispatchToProps

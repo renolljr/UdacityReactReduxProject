@@ -2,7 +2,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Post from './post'
-import {mapDispatchToProps,mapStateToProps} from '../globals/globals'
 
 //show a single page for the post itself.
 //this explicit view is not needed.
@@ -10,15 +9,14 @@ import {mapDispatchToProps,mapStateToProps} from '../globals/globals'
 class PostDetail extends Component{
     componentDidMount(){
         //get the post id from the match collection
-    
         const {post_id} = this.props.match.params
         this.props.getPostById(post_id)
             .catch(error => console.error(error)) 
             .then(post => {
                     this.props.getCommentsForPost(post.id);
-                })
+            })
             
-        }
+    }
     displayPost(){
         const post = this.props.post
         return <div id="posts"><Post

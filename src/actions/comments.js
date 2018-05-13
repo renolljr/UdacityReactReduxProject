@@ -1,11 +1,6 @@
-import {READABLE_API_BASEURL} from '../globals/globals'
-import {postAndPutAuthHeaders, basicAuthHeaders} from '../globals/globals'
-
-export const GET_COMMENTS_FOR_POST = 'GET_COMMENTS_FOR_POST'
-export const CREATE_A_COMMENT = 'CREATE_A_COMMENT'
-export const VOTE_ON_COMMENT = 'VOTE_ON_COMMENT'
-export const EDIT_A_COMMENT = 'EDIT_A_COMMENT'
-export const DELETE_A_COMMENT = 'DELETE_A_COMMENT'
+import {READABLE_API_BASEURL} from './misc/globals'
+import {postAndPutAuthHeaders, basicAuthHeaders} from './misc/globals'
+import { GET_COMMENTS_FOR_POST, CREATE_A_COMMENT, VOTE_ON_COMMENT, EDIT_A_COMMENT, DELETE_A_COMMENT} from "./types" 
 
 export const getPostComments = (postId) => {
   return dispatch => {

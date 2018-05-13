@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {getCreatedDate} from '../globals/helpers'
+
 export default class Comment extends Component {
   state = {
     edit:false

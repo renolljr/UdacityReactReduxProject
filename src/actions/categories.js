@@ -1,9 +1,6 @@
-import {
-  READABLE_API_BASEURL,
-  basicAuthHeaders
-} from '../globals/globals'
+import {READABLE_API_BASEURL, basicAuthHeaders} from './misc/globals'
 
-export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
+import {GET_ALL_CATEGORIES} from './types'
 
 export function getCategories() {
   return dispatch => {
