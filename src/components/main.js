@@ -122,7 +122,7 @@ function mapDispatchToProps(dispatch){
     deletePostById: (id) => dispatch(deletePostById(id)),
     voteOnPost: (postId,vote) => dispatch(voteOnPost(postId, vote)),
     getCommentsForPost: (postId) => dispatch(getPostComments(postId)),
-    updateSort: (criteria) => dispatch({type:'SORT_BY', 'GET_ALL_POSTS': criteria})
+    updateSort: (criteria) => dispatch({type:'SORT_BY', criteria : criteria})
 
   }
 }

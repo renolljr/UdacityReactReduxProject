@@ -51,6 +51,7 @@ class Post extends Component{
     const {data, comments} = this.props
     const hasComment = Boolean(comments && comments[data.id])
     return (
+      (data) ?
       <div className="post">
         <div className="post row">
           <div className="col-xs-12">
@@ -93,7 +94,7 @@ class Post extends Component{
             </div>
           </div>
          </div>
-        </div>
+        </div>: <div></div>
   
   );
   }

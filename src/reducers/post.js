@@ -211,9 +211,10 @@ const post = (state = {currentSort: 'desc'}, action) => {
     case 'CLEAR_POST':
       return {...state, post: null}
     case 'SORT_BY':
+      //sort by the criteria, we are displaying the sorted list of posts assuming the list exists.
       return {...state,
-         currentSort: action.retval,
-         sorted: sortByCriteria(state.allPosts, action.retval)
+         currentSort: action.criteria,
+         sorted: sortByCriteria(state.allPosts, action.criteria)
         }
     default:
       return state;
