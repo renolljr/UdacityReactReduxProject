@@ -10,7 +10,7 @@ export default class Comment extends Component {
     let data = {
         body: this.refs.comment.value
     }
-    console.log("Calling saveEditedComment handler");
+
     this.props.editComment(id,data)
       .then(r =>{
         this.setState({edit: false})

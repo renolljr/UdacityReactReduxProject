@@ -41,9 +41,6 @@ class CategoryContainer extends Component {
   }
 }
 
-//import {getPostsById, getAllPosts, getPostsByCategory, deletePostById, voteOnPost} from '../actions/posts'
-//import {getPostComments, createComment, editComment,voteOnComment, deleteCommentById} from '../actions/comments'
-
 function mapDispatchToProps(dispatch) {
   return {
     getCategories : () => dispatch(getCategories()),

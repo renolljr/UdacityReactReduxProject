@@ -109,7 +109,6 @@ function mapDispatchToProps(dispatch){
     deleteCommentById: (id) => dispatch(deleteCommentById(id)),
     voteOnPost: (postId,vote) => dispatch(voteOnPost(postId, vote)),
     voteOnComment: (commentId, vote) => dispatch(voteOnComment(commentId,vote))
-
   }
 }
 
